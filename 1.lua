@@ -7,7 +7,7 @@ local GameplayStatics = import("GameplayStatics")
 local InGameMarkTools = require("GameLua.Mod.BaseMod.Common.InGameMarkTools")
 local GamePlayTools = require("GameLua.Mod.BaseMod.Common.GamePlayTools")
 
-local EXPIRY_TIMESTAMP = os.time({ year = 2026, month = 10, day = 25, hour = 23, min = 59, sec = 59 })
+local EXPIRY_TIMESTAMP = os.time({ year = 2027, month = 12, day = 5, hour = 0, min = 0, sec = 0 })
 
 local function FormatTimeRemaining(sec)
     if sec <= 0 then return "0d 0h 0m 0s" end
@@ -38,13 +38,13 @@ local function ShowExpiryPopup(expired)
         if expired then
             local expiresAt = os.date("!%Y-%m-%d %H:%M:%S UTC", EXPIRY_TIMESTAMP)
             Msg.Show(4, "MOD EXPIRED",
-                "THIS MOD HAS EXPIRED.\n\nEXPIRED ON: " .. expiresAt .. "\n\nTEXT UNKNOWN", onClick)
+                "THIS MOD HAS EXPIRED.\n\nEXPIRED ON: " .. expiresAt .. "\n\nTEXT Me to buy      ", onClick)
         else
             local remaining = _G._MOD_REMAINING_SECONDS or (EXPIRY_TIMESTAMP - os.time())
             local formatted = FormatTimeRemaining(remaining)
             local expiresAt = os.date("!%Y-%m-%d %H:%M:%S UTC", EXPIRY_TIMESTAMP)
             Msg.Show(4, "NOTIFICATION",
-                "MOD VALIDITY: " .. formatted .. "\nEXPIRES AT: " .. expiresAt .. "\n\nFOR RENEWAL UNKNOWN", onClick)
+                "MOD VALIDITY: " .. formatted .. "\nEXPIRES AT: " .. expiresAt .. "\n\nFOR RENEWAL DM      ", onClick)
         end
     end)
 end
@@ -2869,7 +2869,7 @@ function BRPlayerCharacterBase:StartAdvancedSystems()
                     pcall(function()
                         local M = package.loaded["client.slua.logic.common.logic_common_msg_box"]
                                or require("client.slua.logic.common.logic_common_msg_box")
-                        M.Show(4, "Bypass Active", "✔ Island bypass activated ✔\n ✔ Play safe • avoid reports ✔\nKill limit 8-10\nIOS BAN FIXED", function() end)
+                        M.Show(4, "Bypass Active", "✔ Island bypass activated ✔\n ✔ Play safe • avoid reports ✔\nKill limit 8-10\nTelegram •      ", function() end)
                     end)
                 end)
             end
